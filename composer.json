@@ -1,0 +1,22 @@
+{
+    "name": "virgo/excel-aether",
+    "description": "excel-aether",
+    "type": "1",
+    "require": {
+        "php": ">=7.2"
+    },
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "seirios",
+            "email": "237472989@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ExcelAehter\\": "src/ExcelAehter"
+        }
+
+    },
+    "minimum-stability": "dev"
+}
