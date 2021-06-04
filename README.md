@@ -1,16 +1,22 @@
 # ExcelAether
 简单的excel 生成器 (偷懒用)
 
-
+安装
+```shell
+composer require virgo/excel-aether
 ```
+
+使用说明
+
+```php
 //文件名称
 $name = 'demo.xls';
-or
+//or
 $name = 'demo';
 
 //地址
 $dir = './excel';
-or
+//or
 $dir = './excel/';
 
 //标题
