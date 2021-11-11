@@ -4,7 +4,7 @@
     "type": "1",
     "require": {
         "php": ">=7.2",
-        "phpoffice/phpspreadsheet": "dev-master"
+        "phpoffice/phpspreadsheet": "1.*"
     },
     "license": "Apache-2.0",
     "authors": [

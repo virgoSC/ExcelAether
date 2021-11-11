@@ -9,6 +9,10 @@ use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
+/**
+ * Class PhpSpreadsheet
+ * @package ExcelAether\Connector
+ */
 class PhpSpreadsheet
 {
 
