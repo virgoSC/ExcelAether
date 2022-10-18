@@ -4,14 +4,10 @@
     "type": "1",
     "require": {
         "php": ">=7.2",
-        "phpoffice/phpspreadsheet": "1.*"
+        "phpoffice/phpspreadsheet": "^1.0@beta"
     },
     "license": "Apache-2.0",
     "authors": [
-        {
-            "name": "seirios",
-            "email": "237472989@qq.com"
-        }
     ],
     "autoload": {
         "psr-4": {

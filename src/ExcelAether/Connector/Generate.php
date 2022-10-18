@@ -11,6 +11,11 @@ class Generate
     private $header;
 
     /**
+     * @var array $headerKey
+     */
+    private $headerKey;
+
+    /**
      * @var array $list
      */
     private $list;
@@ -141,14 +146,22 @@ class Generate
     {
         $columns = array_keys($this->header);
 
+        //索引数组和关联数据区分
         if ($columns !== range(0, count($this->header) - 1)) {
+            //关联数组
             $tmp = array_combine($columns, array_fill(0, count($columns), ''));
-
+            //字段
             foreach ($this->list as &$value) {
-                $value = array_values(array_merge($tmp, $value));
-            }
 
-            $this->header = $columns;
+                $value = array_intersect_key($value, $tmp);
+            }
+            $this->headerKey = $columns;
+
+            $this->header = array_values($this->header);
+
+        } else {
+            //索引数组
+            $this->headerKey = $this->header;
         }
     }
 }

@@ -21,7 +21,6 @@ class PhpSpreadsheet
      */
     public static function createExcel(Generate $generate)
     {
-
         $spreadsheet = new Spreadsheet();
 
         $worksheet = $spreadsheet->getActiveSheet();
@@ -77,7 +76,6 @@ class PhpSpreadsheet
         $worksheet->getStyle(self::IntToChr($horizontal) . $vertical . ":$cellCode")->applyFromArray($styleBorders);
 
         $vertical += 1;
-
         //设置数据
         foreach ($generate->getList() as $datum) {
             $horizontal = 0;
@@ -110,6 +108,61 @@ class PhpSpreadsheet
         return $generate->getFileName();
     }
 
+
+    /**
+     * @param $fileName
+     * @param string $sheet
+     * @param int $maxColumn 行数
+     * @param int $maxRow 列数
+     * @return array|void
+     * @throws Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     */
+    public static function readerExcel($fileName, string $sheet = '', int $maxColumn = 0, int $maxRow = 0, $beginColumn = 0, $beginRow = 1): array
+    {
+
+        $fileType = IOFactory::identify($fileName);
+
+        $reader = IOFactory::createReader($fileType);
+
+        $canRead = $reader->canRead($fileName);
+
+        if (!$canRead) {
+            return [];
+        }
+
+        @$spreadsheet = $reader->load($fileName);
+
+        if ($sheet) {
+            $activeSheet = $spreadsheet->setActiveSheetIndexByName($sheet);
+        } else {
+            $activeSheet = $spreadsheet->getActiveSheet();
+        }
+
+        if ($maxColumn) {
+            $column = $maxColumn;
+        } else {
+            $column = self::chrToInt($activeSheet->getHighestColumn());
+        }
+
+        if ($maxRow) {
+            $row = $maxRow;
+        } else {
+            $row = $activeSheet->getHighestRow();
+        }
+
+        $data = [];
+        for ($i = $beginRow; $i <= $row; $i++) {
+            $columnData = [];
+            for ($j = $beginColumn; $j < $column; $j++) {
+                $columnData[] = $activeSheet->getCellByColumnAndRow($j, $i)->getValue();
+            }
+            $data[] = $columnData;
+        }
+
+        return $data;
+    }
+
     public static function IntToChr(int $index, int $start = 65): string
     {
         $str = '';
@@ -117,5 +170,17 @@ class PhpSpreadsheet
             $str .= self::IntToChr(floor($index / 26) - 1);
         }
         return $str . chr($index % 26 + $start);
+    }
+
+    private static function chrToInt($chr): int
+    {
+        $int = 0;
+        $length = strlen($chr);
+        for ($i = 0; $i < $length; $i++) {
+            $t = ord($chr[$i]) - 65 + 1;
+            $int += $t;
+        }
+
+        return $int;
     }
 }

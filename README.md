@@ -1,7 +1,9 @@
 # ExcelAether
+
 简单的excel 生成器 (偷懒用)
 
 安装
+
 ```shell
 composer require virgo/excel-aether
 ```
@@ -33,13 +35,17 @@ $header = [
 $list = [
     ['name' => 'zhang',
      'address' => 'beijing',
-     'phone' => '1821'],
+     'phone' => '1821',
+     'tt' => '333' //与表头字段不同，会自动过滤
+     ],
     ['name' => 'wen',
      'address' => 'shanghia',
-     'phone' => '1822'],
+     'phone' => '1822'
+     ],
     ['name' => 'liu',
      'address' => 'chengdu',
-     'phone' => '1823']
+     'phone' => '1823'
+     ]
 
 ];
 
