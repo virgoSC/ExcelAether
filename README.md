@@ -32,7 +32,7 @@ $header = [
 ];
 
 //数据格式
-$list = [
+$list = [       //key=>value 格式可以打乱
     ['name' => 'zhang',
      'address' => 'beijing',
      'phone' => '1821',

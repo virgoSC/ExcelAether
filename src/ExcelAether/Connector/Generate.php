@@ -153,7 +153,7 @@ class Generate
             //字段
             foreach ($this->list as &$value) {
 
-                $value = array_intersect_key($value, $tmp);
+                $value = array_merge($tmp,array_intersect_key($value, $tmp));
             }
             $this->headerKey = $columns;
 

@@ -19,36 +19,36 @@ if (1) {
     $list = [
         [
             'name' => 'xixi',
-            'address' => '3323',
-            'phone' => '122222',
+            'phone' => '181',
+            'address' => 'address1-2',
             'ttt' => '22'
         ],
         [
             'name' => 'xixi',
-            'address' => '3323',
-            'phone' => '122222'
+            'address' => 'address2-2',
+            'phone' => '182'
         ],
         [
             'name' => 'xixi',
-            'address' => '3323',
-            'phone' => '122222'
+            'address' => 'address3-2',
+            'phone' => '183'
         ]
     ];
 
 
 //or
 
-    $header = [
-        'name1', 'phone1', 'address1'
-    ];
+//    $header = [
+//        'name1', 'phone1', 'address1'
+//    ];
 
-    $list = [
-        ['xixi', '22233.02', '1856263'],
-        ['xixi', '22233', '1856263'],
-        ['xixi', '22233', '1856263'],
-        ['xixi', '22233', '1856263'],
-        ['xixi', '22233', '1856263'],
-    ];
+//    $list = [
+//        ['xixi', '22233.02', '1856263'],
+//        ['xixi', '22233', '1856263'],
+//        ['xixi', '22233', '1856263'],
+//        ['xixi', '22233', '1856263'],
+//        ['xixi', '22233', '1856263'],
+//    ];
 
     $re = \ExcelAether\ExcelAether::ExcelCreateBySpreadsheet($header, $list, $name, $dir, $title);
 
