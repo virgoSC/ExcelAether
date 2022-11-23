@@ -61,7 +61,7 @@ class PhpSpreadsheet
         //宽度设置
         if ($configWidth = $config['width'] ?? []) {
             foreach ($configWidth as $l => $w) {
-                $worksheet->getColumnDimension(self::IntToChr($l + 1))->setWidth($w);
+                $worksheet->getColumnDimension(self::IntToChr($l))->setWidth($w);
             }
         }
 

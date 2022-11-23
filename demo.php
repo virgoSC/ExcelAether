@@ -1,5 +1,8 @@
 <?php
 
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+
 require "vendor/autoload.php";
 
 //生成excel
@@ -51,10 +54,33 @@ if (1) {
 //    ];
 
     $config = [
-        'width' => [10, 50, 20, 30, 40, 20, 40],
+        'width' => [5, 10, 10],
         'height' => '20',
-        'headerStyle' => [],
-        'cellStyle' => [],
+        'headerStyle' => [
+            'alignment' => [
+                'horizontal' => Alignment::HORIZONTAL_CENTER, //水平居中
+                'vertical' => Alignment::VERTICAL_CENTER, //垂直居中
+            ],
+            'borders' => [  //黑框
+                'outline' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['argb' => '000000'],
+                ],
+                'inside' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['argb' => '000000'],
+                ],
+            ],
+            'font' => [
+                'bold' => true,
+            ]]
+        ,
+        'cellStyle' => [
+            'alignment' => [
+                'horizontal' => Alignment::HORIZONTAL_CENTER, //水平居中
+                'vertical' => Alignment::VERTICAL_CENTER, //垂直居中
+            ],
+        ],
     ];
 
     $re = \ExcelAether\ExcelAether::ExcelCreateBySpreadsheet($header, $list, $name, $dir, $title, $config);
