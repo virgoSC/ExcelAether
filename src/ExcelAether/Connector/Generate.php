@@ -31,23 +31,29 @@ class Generate
     private $title;
 
     /**
+     * @var array $config
+     */
+    private $config = [];
+
+    /**
      * @var string $dir
      */
     private $dir;
 
-    public function __construct(array $header, array $list, string $fileName, string $dir, string $title = '')
+    public function __construct(array $header, array $list, string $fileName, string $dir, string $title = '', $config = [])
     {
         $this->setHeader($header);
         $this->setList($list);
         $this->setFileName($fileName);
         $this->setDir($dir);
         $this->setTitle($title);
+        $this->setConfig($config);
         $this->parse();
     }
 
-    public static function construct($header, $list, $fileName, $dir, $title = ''): Generate
+    public static function construct($header, $list, $fileName, $dir, $title = '', $config = []): Generate
     {
-        return (new self($header, $list, $fileName, $dir, $title));
+        return (new self($header, $list, $fileName, $dir, $title, $config));
     }
 
     /**
@@ -142,6 +148,30 @@ class Generate
         return $this;
     }
 
+    /**
+     * @param array $config
+     */
+    public function setConfig(array $config): void
+    {
+        $this->config = $config;
+    }
+
+    /**
+     * @return array
+     */
+    public function getConfig(): array
+    {
+        return $this->config;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHeaderKey(): array
+    {
+        return $this->headerKey;
+    }
+
     private function parse()
     {
         $columns = array_keys($this->header);
@@ -153,7 +183,7 @@ class Generate
             //字段
             foreach ($this->list as &$value) {
 
-                $value = array_merge($tmp,array_intersect_key($value, $tmp));
+                $value = array_merge($tmp, array_intersect_key($value, $tmp));
             }
             $this->headerKey = $columns;
 

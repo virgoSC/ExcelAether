@@ -23,10 +23,14 @@ class PhpSpreadsheet
     {
         $spreadsheet = new Spreadsheet();
 
-        $worksheet = $spreadsheet->getActiveSheet();
-        $worksheet->getRowDimension('1')->setRowHeight(20);
+        $config = $generate->getConfig();
 
-        $cellCode = 'A1';
+        $headerStyle = $config['headerStyle'] ?? [];
+        $cellStyle = $config['cellStyle'] ?? [];
+
+
+        $worksheet = $spreadsheet->getActiveSheet();
+        $worksheet->getRowDimension('1')->setRowHeight($config['height'] ?? 20);
 
         $worksheet->setTitle('sheet1');
         //全局样式
@@ -54,6 +58,13 @@ class PhpSpreadsheet
         //纵坐标
         $vertical = 1;
 
+        //宽度设置
+        if ($configWidth = $config['width'] ?? []) {
+            foreach ($configWidth as $l => $w) {
+                $worksheet->getColumnDimension(self::IntToChr($l + 1))->setWidth($w);
+            }
+        }
+
         //设置标题
         if ($generate->getTitle()) {
             $cellCode = self::IntToChr($horizontal) . $vertical;
@@ -67,13 +78,17 @@ class PhpSpreadsheet
         foreach ($generate->getHeader() as $value) {
             $cellCode = self::IntToChr($horizontal) . $vertical;
             $worksheet->setCellValue($cellCode, $value);
-            $worksheet->getStyle($cellCode)->applyFromArray($styleArray);
-            $worksheet->getDefaultColumnDimension()->setWidth(15);
+            if ($headerStyle) {
+                $worksheet->getStyle($cellCode)->applyFromArray($headerStyle);
+            } else {
+                $worksheet->getStyle($cellCode)->applyFromArray($styleArray)->applyFromArray($styleBorders);
+            }
+
+            if (!$configWidth) {
+                $worksheet->getDefaultColumnDimension()->setWidth(15);
+            }
             $horizontal += 1;
         }
-        $horizontal = 0;
-
-        $worksheet->getStyle(self::IntToChr($horizontal) . $vertical . ":$cellCode")->applyFromArray($styleBorders);
 
         $vertical += 1;
         //设置数据
@@ -90,7 +105,11 @@ class PhpSpreadsheet
 
                 $worksheet->setCellValue($cellCode, $value);
 
-                $worksheet->getStyle($cellCode)->applyFromArray($styleArray);
+                if ($cellStyle) {
+                    $worksheet->getStyle($cellCode)->applyFromArray($cellStyle);
+                } else {
+                    $worksheet->getStyle($cellCode)->applyFromArray($styleArray);
+                }
 
                 $horizontal += 1;
             }
@@ -114,11 +133,13 @@ class PhpSpreadsheet
      * @param string $sheet
      * @param int $maxColumn 行数
      * @param int $maxRow 列数
+     * @param int $beginColumn
+     * @param int $beginRow
      * @return array|void
      * @throws Exception
      * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
      */
-    public static function readerExcel($fileName, string $sheet = '', int $maxColumn = 0, int $maxRow = 0, $beginColumn = 0, $beginRow = 1): array
+    public static function readerExcel($fileName, string $sheet = '', int $maxColumn = 0, int $maxRow = 0, int $beginColumn = 0, int $beginRow = 1)
     {
 
         $fileType = IOFactory::identify($fileName);
@@ -163,7 +184,7 @@ class PhpSpreadsheet
         return $data;
     }
 
-    public static function IntToChr(int $index, int $start = 65): string
+    public static function IntToChr($index, $start = 65): string
     {
         $str = '';
         if (floor($index / 26) > 0) {

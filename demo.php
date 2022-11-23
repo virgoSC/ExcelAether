@@ -50,9 +50,16 @@ if (1) {
 //        ['xixi', '22233', '1856263'],
 //    ];
 
-    $re = \ExcelAether\ExcelAether::ExcelCreateBySpreadsheet($header, $list, $name, $dir, $title);
+    $config = [
+        'width' => [10, 50, 20, 30, 40, 20, 40],
+        'height' => '20',
+        'headerStyle' => [],
+        'cellStyle' => [],
+    ];
 
-    var_dump($re->getDir().$re->getFileName());
+    $re = \ExcelAether\ExcelAether::ExcelCreateBySpreadsheet($header, $list, $name, $dir, $title, $config);
+
+    var_dump($re->getDir() . $re->getFileName());
 
 }
 
@@ -61,9 +68,9 @@ if (1) {
 if (0) {
     $file = './1.xlsx';
 
-    $re = \ExcelAether\ExcelAether::excelReadBySpreadsheet($file,'',0,0,0,2);
+    $re = \ExcelAether\ExcelAether::excelReadBySpreadsheet($file, '', 0, 0, 0, 2);
 
-    file_put_contents('./1.txt',json_encode($re,JSON_UNESCAPED_UNICODE));
+    file_put_contents('./1.txt', json_encode($re, JSON_UNESCAPED_UNICODE));
 
 //    var_dump($re);
 

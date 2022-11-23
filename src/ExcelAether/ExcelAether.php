@@ -16,10 +16,10 @@ class ExcelAether
     /**
      * @throws Exception
      */
-    public static function excelCreateBySpreadsheet(array $header, array $list, string $fileName, string $dir, string $title = ''): Excel
+    public static function excelCreateBySpreadsheet(array $header, array $list, string $fileName, string $dir, string $title = '', $config = []): Excel
     {
         try {
-            $generate = Generate::construct($header, $list, $fileName, $dir, $title);
+            $generate = Generate::construct($header, $list, $fileName, $dir, $title, $config);
             PhpSpreadsheet::createExcel($generate);
             return Excel::construct($generate->getDir(), $generate->getFileName());
 
