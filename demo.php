@@ -1,12 +1,17 @@
 <?php
 
+use ExcelAether\Reader\ExcelReader;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 require "vendor/autoload.php";
 
 //生成excel
-if (1) {
+if (0) {
     $name = '1111.xls';
 
     $dir = './excel';
@@ -89,15 +94,17 @@ if (1) {
 
 }
 
-
 //读取excel
-if (0) {
-    $file = './1.xlsx';
+if (1) {
+    $inputFile = './excel/t1.xlsx';
 
-    $re = \ExcelAether\ExcelAether::excelReadBySpreadsheet($file, '', 0, 0, 0, 2);
+    $reader = new ExcelReader();
 
-    file_put_contents('./1.txt', json_encode($re, JSON_UNESCAPED_UNICODE));
+    $reader->load($inputFile);
 
-//    var_dump($re);
-
+    foreach ($reader->read() as $v) {
+        var_dump($v[0]);
+    }
 }
+
+

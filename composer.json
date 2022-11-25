@@ -4,14 +4,14 @@
     "type": "1",
     "require": {
         "php": ">=7.2",
-        "phpoffice/phpspreadsheet": "^1.0@beta"
+        "phpoffice/phpspreadsheet": "1.19.0"
     },
     "license": "Apache-2.0",
     "authors": [
     ],
     "autoload": {
         "psr-4": {
-            "ExcelAether\\": "src/ExcelAether"
+            "ExcelAether\\": "src/ExcelAether",
         }
 
     },
