@@ -23,7 +23,7 @@ class ExcelReader
 
         $script = $this->scriptPath();
 
-        $com = "python $script $this->inputFile $tmpName";
+        $com = "$script $this->inputFile $tmpName";
 
         exec($com);
 
@@ -35,7 +35,13 @@ class ExcelReader
         $reflect = new \ReflectionClass($this);
         $path = substr($reflect->getFileName(), 0, -15);
 
-        return $path . 'main.py';
+        $os = PHP_OS;
+
+        if ($os == 'WINNT') {
+            return $path.'reader.exe';
+        } else {
+            return './'.$path . 'main';
+        }
     }
 
     private function tmpPath()
