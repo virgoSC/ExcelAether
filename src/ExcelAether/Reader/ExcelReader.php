@@ -10,6 +10,11 @@ class ExcelReader
 
     private $tmpPath = '';
 
+    public function setTmpPath(string $tmpPath)
+    {
+        $this->tmpPath = $tmpPath;
+    }
+
     public function load(string $file)
     {
         $this->inputFile = $file;
@@ -38,9 +43,9 @@ class ExcelReader
         $os = PHP_OS;
 
         if ($os == 'WINNT') {
-            return $path.'reader.exe';
+            return $path . 'reader.exe';
         } else {
-            return './'.$path . 'main';
+            return './' . $path . 'main';
         }
     }
 
@@ -49,8 +54,13 @@ class ExcelReader
         if (!$this->inputFile) {
             die('excel is null');
         }
-
-        $this->tmpPath = dirname($this->inputFile);
+        if (!$this->tmpPath) {
+            $this->tmpPath = dirname($this->inputFile);
+        } else {
+            if (!is_dir($this->tmpPath) and !mkdir($this->tmpPath, 0755, true)) {
+                die('文件夹创建失败');
+            }
+        }
     }
 
     private function readCsv($file): Generator

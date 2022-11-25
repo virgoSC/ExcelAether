@@ -100,6 +100,7 @@ if (1) {
 
     $reader = new ExcelReader();
 
+    $reader->setTmpPath('./ttt');
     $reader->load($inputFile);
 
     foreach ($reader->read() as $v) {
