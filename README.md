@@ -116,10 +116,12 @@ PS：弃用 phpspreadsheet 会造成内存占用过大，等到内存回收，�
 使用python 将xls xlxs 转成csv 再用PHP 读取
 
 
-````shell
+##### linux 下执行
+````shell 
 #添加到 /etc/profile
 export PATH=$PATH:/var/www/swoft/vendor/virgo/excel-aether/src/ExcelAether/Reader
-
+#权限
+chmod 0755 /var/www/swoft/vendor/virgo/excel-aether/src/ExcelAether/Reader/ExcelReader
 #执行
 source /etc/profile
 ````
@@ -138,6 +140,7 @@ foreach ($reader->read() as $v) {
 
 ###### 更新
 ###### 1 自动读取csv 为utf8编码 
+###### 2 linux 需要权限
 
 
 
