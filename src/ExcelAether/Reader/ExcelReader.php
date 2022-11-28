@@ -45,7 +45,7 @@ class ExcelReader
         if ($os == 'WINNT') {
             return $path . 'reader.exe';
         } else {
-            return './' . $path . 'main';
+            return $path . 'main';
         }
     }
 

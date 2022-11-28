@@ -117,13 +117,10 @@ PS：弃用 phpspreadsheet 会造成内存占用过大，等到内存回收，�
 
 
 ````shell
-#安装python3 
-apt-get install python3
-#安装pip3
-apt-get install pip3
-#安装库
-pip3 install -r ./requirements.txt -i  https://pypi.mirrors.ustc.edu.cn/simple
+#添加 /etc/profile
+export PATH=$PATH:/var/www/swoft/vendor/virgo/excel-aether/src/ExcelAether/Reader
 
+source /etc/profile
 ````
 
 ### 读取demo

@@ -96,15 +96,16 @@ if (0) {
 
 //读取excel
 if (1) {
-    $inputFile = './excel/t1.xlsx';
+    $inputFile = './excel/t1.csv';
 
     $reader = new ExcelReader();
 
     $reader->setTmpPath('./ttt');
     $reader->load($inputFile);
 
+    $da= [];
     foreach ($reader->read() as $v) {
-        var_dump($v[0]);
+        var_dump($v);
     }
 }
 
