@@ -43,9 +43,9 @@ class ExcelReader
         $os = PHP_OS;
 
         if ($os == 'WINNT') {
-            return $path . 'reader.exe';
+            return $path . 'ExcelReader.exe';
         } else {
-            return $path . 'main';
+            return 'ExcelReader';
         }
     }
 
