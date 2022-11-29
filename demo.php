@@ -96,7 +96,7 @@ if (0) {
 
 //读取excel
 if (1) {
-    $inputFile = './excel/t1.csv';
+    $inputFile = './excel/638574a6b0451.xlsx';
 
     $reader = new ExcelReader();
 
