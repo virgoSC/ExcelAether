@@ -26,9 +26,12 @@ class ExcelReader
 
         $tmpName = $this->tmpPath . '/' . md5(uniqid()) . '.csv';
 
-        $script = $this->scriptPath();
+        $script = $this->scriptPath2();
 
-        $com = "$script '$this->inputFile' '$tmpName'";
+//        $com = "python3 $script '$this->inputFile' '$tmpName'";
+
+
+        $com = "python3 $script '$this->inputFile' '$tmpName'";
 
         exec($com);
 
@@ -46,6 +49,20 @@ class ExcelReader
             return $path . 'ExcelReader.exe';
         } else {
             return 'ExcelReader';
+        }
+    }
+
+    private function scriptPath2(): string
+    {
+        $reflect = new \ReflectionClass($this);
+        $path = substr($reflect->getFileName(), 0, -15);
+
+        $os = PHP_OS;
+
+        if ($os == 'WINNT') {
+            return $path . 'ExcelReader.py';
+        } else {
+            return 'ExcelReader.py';
         }
     }
 

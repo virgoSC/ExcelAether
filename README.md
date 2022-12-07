@@ -115,6 +115,20 @@ PS：弃用 phpspreadsheet 会造成内存占用过大，等到内存回收，�
 
 使用python 将xls xlxs 转成csv 再用PHP 读取
 
+##### 安装 python3
+```shell
+apt-get install python3
+apt-get install pip3
+pip install --upgrade pip
+
+
+pip3 install -r ./requirements.txt -i  https://pypi.mirrors.ustc.edu.cn/simple
+
+
+apt-get install libffi-dev
+
+```
+
 
 ##### linux 下执行
 ````shell 
