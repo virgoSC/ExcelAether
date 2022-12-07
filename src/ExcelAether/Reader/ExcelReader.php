@@ -28,9 +28,9 @@ class ExcelReader
 
         $script = $this->scriptPath();
 
-//        $com = "$script '$this->inputFile' '$tmpName'";
-
-        $com = "python3 $script '$this->inputFile' '$tmpName'";
+        $com = "$script '$this->inputFile' '$tmpName'";
+//
+//        $com = "python3 $script '$this->inputFile' '$tmpName'";
 
         exec($com);
 
