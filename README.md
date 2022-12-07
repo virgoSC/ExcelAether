@@ -115,21 +115,6 @@ PS：弃用 phpspreadsheet 会造成内存占用过大，等到内存回收，�
 
 使用python 将xls xlxs 转成csv 再用PHP 读取
 
-##### 安装 python3
-```shell
-apt-get install python3
-apt-get install pip3
-pip install --upgrade pip
-
-
-pip3 install -r ./requirements.txt -i  https://pypi.mirrors.ustc.edu.cn/simple
-
-
-apt-get install libffi-dev
-
-```
-
-
 ##### linux 下执行
 ````shell 
 #添加到 /etc/profile
@@ -146,9 +131,12 @@ ln -s /var/www/swoft/vendor/virgo/excel-aether/src/ExcelAether/Reader/ExcelReade
 ### 读取demo
 
 ```php
-$inputFile = './excel/t1.xlsx';
+$inputFile = './excel/t1(3).xlsx';
 $reader = new ExcelReader();
 $reader->load($inputFile);
+
+$reader->count(); //获取大致条数，csv有换行存在
+
 foreach ($reader->read() as $v) {
     var_dump($v[0]);
 }

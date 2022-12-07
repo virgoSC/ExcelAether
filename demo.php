@@ -96,12 +96,14 @@ if (0) {
 
 //读取excel
 if (1) {
-    $inputFile = './excel/638574a6b0451.xlsx';
+    $inputFile = 'D:\work\ExcelAether\excel\t1(3).xlsx';
 
     $reader = new ExcelReader();
 
-    $reader->setTmpPath('./ttt');
+    $reader->setTmpPath('D:\work\ExcelAether\ttt');
     $reader->load($inputFile);
+
+    var_dump($reader->count());
 
     $da= [];
     foreach ($reader->read() as $v) {
