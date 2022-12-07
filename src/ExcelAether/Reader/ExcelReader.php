@@ -45,11 +45,6 @@ class ExcelReader
 
     }
 
-    public function read(): Generator
-    {
-        return $this->readCsv($this->tmpFile);
-    }
-
     private function tmpPath()
     {
         if (!$this->inputFile) {
@@ -85,6 +80,11 @@ class ExcelReader
         $this->count = count($fp);
     }
 
+    public function read(): Generator
+    {
+        return $this->readCsv($this->tmpFile);
+    }
+
     private function readCsv($file): Generator
     {
         if (!is_file($file) && !file_exists($file)) {
@@ -97,7 +97,12 @@ class ExcelReader
             yield $filData;
         }
         fclose($cvsFile);
-        unlink($file);
+        $this->tmpDelete();
+    }
+
+    public function tmpDelete()
+    {
+        unlink($this->tmpFile);
     }
 
     private function scriptPath2(): string
