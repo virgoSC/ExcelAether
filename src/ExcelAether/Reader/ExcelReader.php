@@ -70,7 +70,7 @@ class ExcelReader
         if ($os == 'WINNT') {
             return "$path\ExcelReader.exe $this->inputFile $tmpName";
         } else {
-            return "ExcelReader $this->inputFile $tmpName";
+            return "ExcelReader '$this->inputFile' $tmpName";
         }
     }
 
