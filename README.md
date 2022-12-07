@@ -138,6 +138,9 @@ export PATH=$PATH:/var/www/swoft/vendor/virgo/excel-aether/src/ExcelAether/Reade
 chmod 0755 /var/www/swoft/vendor/virgo/excel-aether/src/ExcelAether/Reader/ExcelReader
 #执行
 source /etc/profile
+
+#软连接
+ln -s /var/www/swoft/vendor/virgo/excel-aether/src/ExcelAether/Reader/ExcelReader /usr/bin/
 ````
 
 ### 读取demo

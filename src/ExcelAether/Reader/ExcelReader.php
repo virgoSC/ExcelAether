@@ -26,11 +26,10 @@ class ExcelReader
 
         $tmpName = $this->tmpPath . '/' . md5(uniqid()) . '.csv';
 
-        $script = $this->scriptPath2();
+        $script = $this->scriptPath();
 
-//        $com = "python3 $script '$this->inputFile' '$tmpName'";
-
-
+//        $com = "$script '$this->inputFile' '$tmpName'";
+        
         $com = "python3 $script '$this->inputFile' '$tmpName'";
 
         exec($com);
