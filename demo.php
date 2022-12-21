@@ -95,7 +95,7 @@ if (0) {
 }
 
 //读取excel
-if (1) {
+if (0) {
     $inputFile = 'D:\work\ExcelAether\excel\t1(3).xlsx';
 
     $reader = new ExcelReader();
@@ -111,4 +111,12 @@ if (1) {
     }
 }
 
+if (1) {
+    $inputFile = 'D:\work\ExcelAether\excel\t1.csv';
+    $outfile  = 'D:\work\ExcelAether\excel\t1.xlsx';
+
+    $csv2Excel = new \ExcelAether\CsvToExcel\CsvToExcel();
+
+    $csv2Excel->csv2Excel($inputFile,$outfile);
+}
 

@@ -118,11 +118,11 @@ PS：弃用 phpspreadsheet 会造成内存占用过大，等到内存回收，�
 ##### linux 下执行
 ````shell 
 #添加到 /etc/profile
-export PATH=$PATH:/var/www/swoft/vendor/virgo/excel-aether/src/ExcelAether/Reader
+#export PATH=$PATH:/var/www/swoft/vendor/virgo/excel-aether/src/ExcelAether/Reader
 #权限
 chmod 0755 /var/www/swoft/vendor/virgo/excel-aether/src/ExcelAether/Reader/ExcelReader
 #执行
-source /etc/profile
+#source /etc/profile
 
 #软连接
 ln -s /var/www/swoft/vendor/virgo/excel-aether/src/ExcelAether/Reader/ExcelReader /usr/bin/
