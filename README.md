@@ -143,6 +143,17 @@ foreach ($reader->read() as $v) {
 
 ```
 
+### csv to excel
+```php
+
+$inputFile = 'D:\work\ExcelAether\excel\t1.csv';
+$outfile  = 'D:\work\ExcelAether\excel\t1.xlsx';
+
+$csv2Excel = new \ExcelAether\CsvToExcel\CsvToExcel();
+
+$csv2Excel->csv2Excel($inputFile,$outfile);
+```
+
 ###### 更新
 ###### 1 自动读取csv 为utf8编码 
 ###### 2 linux 需要权限
