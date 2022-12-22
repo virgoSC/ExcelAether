@@ -116,6 +116,18 @@ PS：弃用 phpspreadsheet 会造成内存占用过大，等到内存回收，�
 使用python 将xls xlxs 转成csv 再用PHP 读取
 
 ##### linux 下执行
+```shell
+#python install
+apt-get install python3
+apt-get install python3-pip
+pip install --upgrade pip
+
+
+pip3 install -r ./requirements.txt -i  https://pypi.mirrors.ustc.edu.cn/simple
+
+
+```
+
 ````shell 
 #添加到 /etc/profile
 #export PATH=$PATH:/var/www/swoft/vendor/virgo/excel-aether/src/ExcelAether/Reader
