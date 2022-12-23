@@ -25,7 +25,8 @@ if __name__ == '__main__':
         for i in range(len(line.split(','))):
             item = line.split(',')[i]
             # 金额转换
-            if re.search('^(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,2})?$', item):
+            # if re.search('^(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,2})?$', item):
+            if re.search('^([-+])?\\d+(\\.[0-9]{1,2})?$', item):
                 item = float('%.2f' % float(item))
 
             sheet.write(x, i, item)
