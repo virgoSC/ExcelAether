@@ -99,10 +99,6 @@ class PhpSpreadsheet
 
                 $cellCode = self::IntToChr($horizontal) . $vertical;
 
-                if (is_int($value) or is_numeric($value) or is_float($value)) {
-                    $value = $value . "\t";
-                }
-
                 $worksheet->setCellValue($cellCode, $value);
 
                 if ($cellStyle) {
